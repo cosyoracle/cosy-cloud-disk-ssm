@@ -1,3 +1,7 @@
+创建数据库
+CREATE DATABASE `file` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+
+创建文件表
 -- file.file definition
 CREATE TABLE `file` (
   `fid` int NOT NULL AUTO_INCREMENT,
@@ -17,6 +21,7 @@ CREATE TABLE `file` (
   PRIMARY KEY (`fid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+创建用户表
 -- file.`user` definition
 CREATE TABLE `user` (
   `id` int NOT NULL AUTO_INCREMENT,
