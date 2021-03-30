@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cosyblogs.cloud.disk.dao.FileDao">
+
+    <select id="getCount" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        select count(*) from file where fdelete = 0 and ffolder = ${ffolder} and fowner = #{fowner}
+    </select>
+
+    <select id="getFiles" parameterType="java.lang.Integer" resultType="File">
+        select * from file where fdelete = 0 and ffolder = ${ffolder} and fowner = #{fowner} limit #{start}, #{pageSize}
+    </select>
+
+    <insert id="insertFile" parameterType="File">
+        insert into file(fname,fsize,ftype,fpath,fsuffix,ffolder,fowner) values (#{fname}, #{fsize}, #{ftype}, #{fpath}, #{fsuffix}, #{ffolder}, #{fowner})
+    </insert>
+    
+    <update id="deleteFile" parameterType="java.lang.Integer">
+    	update file set fdelete = 1 ,fdtime = now() where fid = #{fid}
+    </update>
+    
+    <update id="deleteFiles" parameterType="java.lang.String">
+        update file set fdelete = 1 ,fdtime = now() where fid in (${fids})
+    </update>
+    
+    <update id="updateFile" parameterType="Map">
+        update file set fname = #{fname} , fpath = #{fpath} where fid = ${fid}
+    </update>
+    
+    <select id="getRecycleFiles" resultType="File">
+        select * from file where fdelete = 1 and fowner = #{fowner} limit #{start}, #{pageSize}
+    </select>
+    
+    <select id="getRecycleCount" resultType="java.lang.Integer">
+        select count(*) from file where fdelete = 1 and fowner = #{fowner}
+    </select>
+    
+    <delete id="dropFile" parameterType="java.lang.Integer">
+        delete from file where fid = #{fid}
+    </delete>
+    
+    <update id="recoveryFile" parameterType="java.lang.Integer">
+        update file set fdelete = 0 where fid = #{fid}
+    </update>
+    
+    <update id="recoveryFiles" parameterType="java.lang.String">
+        update file set fdelete = 0 where fid in (${fids})
+    </update>
+    
+    <update id="collectFile" parameterType="java.lang.Integer">
+        update file set fcollect = 1 where fid = #{fid}
+    </update>
+    
+    <select id="getCollectCount" resultType="java.lang.Integer">
+        select count(*) from file where fcollect = 1 and fdelete = 0 and fowner = #{fowner}
+    </select>
+    
+    <select id="getCollectFiles" resultType="File">
+        select * from file where fcollect = 1 and fdelete = 0 and fowner = #{fowner} limit #{start}, #{pageSize}
+    </select>
+    
+    <update id="dislikeFile" parameterType="java.lang.Integer">
+        update file set fcollect = 0 where fid = #{fid}
+    </update>
+    
+    <insert id="insertDir" parameterType="File">
+        insert into file(fname,ftype,fpath,ffolder,fowner) values (#{fname}, 6, #{fpath}, #{ffolder}, #{fowner})
+    </insert>
+    
+    <delete id="dropDir" parameterType="java.lang.Integer">
+        delete from file where fid = #{fid} or ffolder = #{fid}
+    </delete>
+</mapper>
+

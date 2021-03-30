@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cosyblogs.cloud.disk.dao.FpageDao">
+
+    <select id="searchToatl" parameterType="java.lang.Integer" resultType="Fpage">
+        select count(CASE WHEN ftype = 1 THEN 1 end) as tpicture,count(CASE WHEN ftype = 2 THEN 1 end) as tfile,count(CASE WHEN ftype = 3 THEN 1 end) as tmusic,count(CASE WHEN ftype = 4 THEN 1 end) as tvideo from file where fowner = #{fowner}
+    </select>
+    <select id="search" parameterType="java.lang.Integer" resultType="Fsearch">
+      select 
+		count(CASE WHEN date_format(ftime,'%Y-%m-%d') = DATE_FORMAT(DATE_ADD(sysdate(),INTERVAL -7 day),'%Y-%m-%d') THEN 1 end) as a,
+		count(CASE WHEN date_format(ftime,'%Y-%m-%d') = DATE_FORMAT(DATE_ADD(sysdate(),INTERVAL -6 day),'%Y-%m-%d') THEN 1 end) as b,
+		count(CASE WHEN date_format(ftime,'%Y-%m-%d') = DATE_FORMAT(DATE_ADD(sysdate(),INTERVAL -5 day),'%Y-%m-%d') THEN 1 end) as c,
+		count(CASE WHEN date_format(ftime,'%Y-%m-%d') = DATE_FORMAT(DATE_ADD(sysdate(),INTERVAL -4 day),'%Y-%m-%d') THEN 1 end) as d,
+		count(CASE WHEN date_format(ftime,'%Y-%m-%d') = DATE_FORMAT(DATE_ADD(sysdate(),INTERVAL -3 day),'%Y-%m-%d') THEN 1 end) as e,
+		count(CASE WHEN date_format(ftime,'%Y-%m-%d') = DATE_FORMAT(DATE_ADD(sysdate(),INTERVAL -2 day),'%Y-%m-%d') THEN 1 end) as f,
+		count(CASE WHEN date_format(ftime,'%Y-%m-%d') = DATE_FORMAT(DATE_ADD(sysdate(),INTERVAL -1 day),'%Y-%m-%d') THEN 1 end) as g
+		from file 
+		where fowner = #{fowner} and ftype = #{ftype}
+    </select>
+
+
+</mapper>
