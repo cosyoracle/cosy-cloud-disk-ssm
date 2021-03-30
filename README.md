@@ -1,6 +1,11 @@
 # cosy-cloud-disk-ssm
 基于hadoop的个人云盘
 
+![](https://img.shields.io/badge/release-v1.0.0-green.svg)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[![](https://img.shields.io/badge/website-cosyblogs.com-biue.svg)](https://www.cosyblogs.com)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 ## 背景
 该项目基于hadoop，通过hdfs实现个人云盘的功能，包括文件的上传下载修改删除等
 
