@@ -19,6 +19,7 @@
 3. 需在src\main\resources路径下的jdbc.properties文件里配置数据库连接信息
 4. 需在src\main\java\com\cosyblogs\cloud\disk\service\impl的HDFSServiceImpl.java里配置HDFS的基本信息
 5. 数据库的sql语句在sql.txt下
+6. 如需了解更多请[点击这里](https://www.cosyblogs.com/blogs/big-data/398.html)
 
 ## 注意
 - 目前来说还没有对代码做优化，执行效率方面可能不是特别好，仅供个人学习使用
