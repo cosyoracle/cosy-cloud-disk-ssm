@@ -1,0 +1,28 @@
+-- file.file definition
+CREATE TABLE `file` (
+  `fid` int NOT NULL AUTO_INCREMENT,
+  `fname` varchar(255) NOT NULL,
+  `fsize` int DEFAULT NULL,
+  `ftype` int DEFAULT NULL,
+  `ftime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `fcollect` int DEFAULT '0',
+  `fdelete` int DEFAULT '0',
+  `fdtime` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `fpath` varchar(255) DEFAULT NULL,
+  `fsuffix` varchar(10) DEFAULT NULL,
+  `fowner` int DEFAULT NULL,
+  `fownername` varchar(25) DEFAULT NULL,
+  `ffolder` int DEFAULT NULL,
+  `fshare` int DEFAULT '0',
+  PRIMARY KEY (`fid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- file.`user` definition
+CREATE TABLE `user` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `username` varchar(25) NOT NULL,
+  `password` varchar(25) NOT NULL,
+  `role` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
